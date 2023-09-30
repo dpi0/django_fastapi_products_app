@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  backend:
+  # name of the service, can be anything
+    build:
+      context: .
+      # location of the Dockerfile
+      # here it's in the same dir as docker-compose file so "".""
+      # if not in the same folder then, 
+        # context: ./dir
+        # dockerfile: ./dir/Dockerfile
+
+      dockerfile: Dockerfile
+      # name of the Dockerfile
+
+    ports:
+      - 8000:8000
+    volumes:
+      - ./django_admin:/app
+      # maps the entire dir, i.e the dir containing the docker-compose file
+      # to /app folder
+    depends_on:
+      - db
+  
+
+  db:
+    image: mysql:8.0
+    restart: always
+    # mysql can be restarted auto
+    environment:
+      MYSQL_DATABASE: django_admin
+      MYSQL_USER: dp
+      MYSQL_PASSWORD: pass12345
+      MYSQL_ROOT_PASSWORD: pass12345
+    volumes:
+      - ./django_admin/.django_db_data:/var/lib/mysql
+    ports:
+      - 3306:3306

@@ -1,0 +1,14 @@
+* text=auto
+
+# This will treat all files as text files and convert to OS's line ending on checkout and back to LF on commit automatically
+
+
+# If you want to specify the line ending explicitly, you can use:
+
+# * text eol=crlf
+# * text eol=lf
+# The first one is for checkout and the second one is for commit.
+
+
+# *.jpg binary
+# This will treat all .jpg images as binary files, regardless of path. So no conversion needed.
